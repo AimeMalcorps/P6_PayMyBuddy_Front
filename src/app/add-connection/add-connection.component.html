@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card m-5">
+            <div class="card-header">
+                <div class="row">
+                    <button class="btn btn-success col-md-2 me-auto" style="cursor:default">Pay My Buddy</button>
+                    <nav class="navbar bg-light col-auto">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="/home">Home</a>
+                            <a class="navbar-brand" href="#">Transfert</a>
+                            <a class="navbar-brand" href="#">Profile</a>
+                            <a class="navbar-brand" href="#">Contact</a>
+                            <a class="navbar-brand" href="/login">Logout</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="card-body" style="margin-top: 2%; margin-bottom: 2%;">
+                <form [formGroup]="connectionForm" (ngSubmit)="onSubmit()" class="row justify-content-center">
+                    <div class="col-md-6" style="padding: 2%; background-color:gainsboro;">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="name"
+                                    formControlName="name" required>
+                            </div>
+                            <button class="col-md-2 btn btn-primary" type="submit" onclick="blur();">Add Connection</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row justify-content-center mt-4 mb-2">
+                    <h5 class="card-title col-md-4">My connections</h5>
+                </div>
+                <div class="row justify-content-center mt-2" style="margin-bottom: 2%;">
+                    <table class="col-md-6">
+                        <thead style="background-color: #198754;color: white;">
+                            <tr>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let connection of connections; let i = index; trackBy: trackConnections">
+                                <td>{{connection.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
