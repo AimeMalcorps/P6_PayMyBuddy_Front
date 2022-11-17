@@ -1,0 +1,64 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center" style="margin-top: 100px;">
+            <div class="col-md-6">
+                <div class="card row" *ngIf="loginView">
+                    <button class="btn btn-success col-md-3 mt-3 mb-5 mx-auto" style="cursor:default">Pay My
+                        Buddy</button>
+                    <div class="col-md-3 mx-auto">
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="email" type="text" placeholder="Email" formControlName="email" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="password" type="text" placeholder="Password" formControlName="password"
+                                    [type]="'password'" required>
+                            </div>
+                            <div *ngIf="this.idError"
+                                style="background-color: red; border-radius: 3%; text-align: center; color: white;">
+                                Identifiants incorrect
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input type="checkbox">Remember me
+                            </div>
+                            <div class="row">
+                                <div style="padding-bottom: 5%; margin-left: 10%;">
+                                    <button class="btn btn-primary" type="submit">Login</button>
+                                    <button class="btn btn-primary" style="margin-left: 10%;" (click)="loginView=false;">Sign up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card row" *ngIf="!loginView">
+                    <button class="btn btn-success col-md-3 mt-3 mb-5 mx-auto" style="cursor:default">Pay My
+                        Buddy</button>
+                    <div class="col-md-3 mx-auto">
+                        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="name" type="text" placeholder="Name" formControlName="name" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="phone" type="text" placeholder="Phone" formControlName="phone" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="email" type="text" placeholder="Email" formControlName="email" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="password" type="text" placeholder="Password" formControlName="password"
+                                    [type]="'password'" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 5%;">
+                                <input id="password2" type="text" placeholder="Confirm Password"
+                                    formControlName="password2" [type]="'password'" required>
+                            </div>
+                            <div style="padding-bottom: 5%; margin-left: 10%;">
+                                <button class="btn btn-primary" type="submit">Create Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
