@@ -15,9 +15,9 @@
                     </nav>
                 </div>
             </div>
-            <div class="card-body" style="margin-top: 2%; margin-bottom: 2%;">
+            <div class="card-body" style="margin-top: 2%; margin-bottom: 2%;" *ngIf="!loading">
                 <div class="row justify-content-center" style="margin-bottom: 2%;">
-                    <h5 class="card-title col-md-3">Send $$$$</h5>
+                    <h5 class="card-title col-md-3">Send Money</h5>
                     <button class="btn btn-warning col-auto" (click)="addConnection()">Add connection</button>
                 </div>
                 <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="row justify-content-center">
@@ -39,6 +39,9 @@
                                 <input id="amount" type="text" placeholder="0€" formControlName="amount" required>
                             </div>
                             <button class="col-md-2 btn btn-primary" type="submit" onclick="blur();">Pay</button>
+                        </div>
+                        <div class="row" style="margin-top: 5%;">
+                            <b>Your balance : {{ amount }} $</b>
                         </div>
                     </div>
                 </form>

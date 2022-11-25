@@ -21,6 +21,10 @@ export class BackendService {
     return this.http.post<any>(this.configUrl + '/create/account', {name,email,password,phoneNumber});
   }
 
+  getUserBankAccount(userId: number) {
+    return this.http.get<any>(this.configUrl + '/user/bankAccount/' + userId);
+  }
+
   getUserConnections(user: User) {
     return this.http.get<any>(this.configUrl + '/user/connections/' + user.name);
   }

@@ -15,10 +15,16 @@ export class HomeComponent implements OnInit {
   user: User = JSON.parse(localStorage.getItem('userDTO')!);
   connections: User[];
   payments: Payment[];
+  amount: number;
+  loading: boolean = true;
 
   constructor(private fb: FormBuilder,
     private router: Router,
     private backendService: BackendService) {
+    this.backendService.getUserBankAccount(this.user.id)
+      .subscribe((res) => {
+        this.amount = res;
+      })
     this.backendService.getUserConnections(this.user)
       .subscribe((res) => {
         this.connections = res;
@@ -28,6 +34,7 @@ export class HomeComponent implements OnInit {
         this.payments = res;
       });
     this.generateForm();
+    this.loading = false;
   }
 
   ngOnInit(): void {
@@ -42,6 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     console.log(this.transferForm.value.connection);
     console.log(this.transferForm.value.description);
     console.log(this.transferForm.value.amount);
@@ -51,12 +59,15 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
         if (res != null) {
           console.log(res);
-          this.backendService.getUserPayments(this.user)
+          this.payments = res;
+          this.backendService.getUserBankAccount(this.user.id)
             .subscribe((res) => {
-              this.payments = res;
-            })
+              this.amount = res;
+              this.loading = false;
+            });
+          this.generateForm();
         }
-      })
+      });
   }
 
   selectConnection(conncetion: any) {
